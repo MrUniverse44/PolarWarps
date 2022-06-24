@@ -1,0 +1,23 @@
+Language: en
+Prefix: EasyWarp
+commands:
+  main:
+    - '&b&lEasyWarp &bby p1xEL_mc &7(%version%)'
+    - '&6/EasyWarp help &fView help.'
+  warp: '&6/warp <name> &fTeleport to warp.'
+  setwarp: '&6/setwarp <name> &fSet warp.'
+  delwarp: '&6/delwarp <name> &fDelete warp.'
+  reload: '&6/EasyWarp reload &fReload the config.'
+
+reload-success: '&7%prefix% &8> &aConfiguration reloaded successful!'
+setwarp-success: '&7%prefix% &8> &aWarp &e%warp% &aset successful!'
+delwarp-success: '&7%prefix% &8> &aWarp &e%warp% &aremoved successful!'
+warp-teleporting: '&7%prefix% &8> &aTeleporting...'
+warp-success: '&7%prefix% &8> &aYou teleported to warp &e%warplabel%&a !'
+
+no-perm: '&7%prefix% &8> &cYou do not have perms!'
+not-exist: '&7%prefix% &8> &cWarp &e%warp% &cis not exist!'
+cd: '&7%prefix% &8> &cPlease try again in &e%second% &csecond(s)!'
+already-exist: '&7%prefix% &8> &cWarp &e%warp% &cis already exist!'
+must-be-player: '&7%prefix% &8> &cYou must be a player.'
+invalid-player: '&7%prefix% &8> &cPlayer does not exist.'

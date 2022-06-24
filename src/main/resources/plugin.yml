@@ -1,0 +1,25 @@
+name: EasyWarp
+main: p1xel.minecraft.EasyWarp
+api-version: 1.13
+version: 1.0.02
+commands:
+  warp:
+    aliases: []
+  setwarp:
+    aliases: []
+  delwarp:
+    aliases: []
+  EasyWarp:
+    aliases: [ew]
+
+permissions:
+  easywarp.help:
+    default: true
+  easywarp.warp:
+    default: true
+  easywarp.setwarp:
+    default: op
+  easywarp.delwarp:
+    default: op
+  easywarp.reload:
+    default: op

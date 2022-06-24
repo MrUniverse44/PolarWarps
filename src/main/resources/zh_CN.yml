@@ -1,0 +1,23 @@
+Language: zh_CN
+Prefix: EasyWarp
+commands:
+  main:
+    - '&b&lEasyWarp &bby p1xEL_mc &7(%version%)'
+    - '&6/EasyWarp help &f查看帮助'
+  warp: '&6/warp <传送点> &f传送至传送点'
+  setwarp: '&6/setwarp <传送点> &f创建传送点'
+  delwarp: '&6/delwarp <传送点> &f删除传送点'
+  reload: '&6/EasyWarp reload &f重载配置文件'
+
+reload-success: '&7%prefix% &8> &a配置文件重载成功!'
+setwarp-success: '&7%prefix% &8> &a传送点 &e%warp% &a创建成功!'
+delwarp-success: '&7%prefix% &8> &a传送点 &e%warp% &a删除成功!'
+warp-teleporting: '&7%prefix% &8> &a传送中...'
+warp-success: '&7%prefix% &8> &a你传送至传送点 &e%warp%&a !'
+
+no-perm: '&7%prefix% &8> &c你没有权限!'
+not-exist: '&7%prefix% &8> &c传送点 &e%warp% &c不存在!'
+cd: '&7%prefix% &8> &c请在 &e%second% &c秒后再试!'
+already-exist: '&7%prefix% &8> &c传送点 &e%warp% &c已存在!'
+must-be-player: '&7%prefix% &8> &c你必须是名玩家'
+invalid-player: '&7%prefix% &8> &c玩家不存在或不在线'

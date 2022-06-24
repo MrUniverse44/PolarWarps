@@ -1,0 +1,10 @@
+example:
+  label: 'NATUS VINCERE'
+  loc:
+    ==: org.bukkit.Location
+    world: world
+    x: 1008.4994374898846
+    y: 10.612801773444899
+    z: 1005.1736691959188
+    pitch: 39.450043
+    yaw: 151.95042

@@ -1,0 +1,11 @@
+# Easy Warp #
+# A SIMPLE PLUGIN TO MANAGE YOUR WARPS #
+
+# Version of the plugin.
+Version: 1.0.02
+
+# Languages: en, zh_CN .
+Language: en
+
+wait: 3
+cd: 10
