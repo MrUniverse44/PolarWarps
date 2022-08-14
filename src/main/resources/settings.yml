@@ -1,6 +1,19 @@
+#  ┏━━━┳━━━┳┓╋╋┏━━━┳━━━┓┏┓┏┓┏┳━━━┳━━━┳━━━┳━━━┓
+#  ┃┏━┓┃┏━┓┃┃╋╋┃┏━┓┃┏━┓┃┃┃┃┃┃┃┏━┓┃┏━┓┃┏━┓┃┏━┓┃
+#  ┃┗━┛┃┃╋┃┃┃╋╋┃┃╋┃┃┗━┛┃┃┃┃┃┃┃┃╋┃┃┗━┛┃┗━┛┃┗━━┓
+#  ┃┏━━┫┃╋┃┃┃╋┏┫┗━┛┃┏┓┏┛┃┗┛┗┛┃┗━┛┃┏┓┏┫┏━━┻━━┓┃
+#  ┃┃╋╋┃┗━┛┃┗━┛┃┏━┓┃┃┃┗┓┗┓┏┓┏┫┏━┓┃┃┃┗┫┃╋╋┃┗━┛┃
+#  ┗┛╋╋┗━━━┻━━━┻┛╋┗┻┛┗━┛╋┗┛┗┛┗┛╋┗┻┛┗━┻┛╋╋┗━━━┛
+#
+# Created by JustJustin
+# Version: 1.0.1-SNAPSHOT
+#
+# Change the default welcome message on /setwarp
 default-welcome-message:
   - "&aWelcome to this warp"
   - "&eStore.server.net"
 
 settings:
+  # Toggle the /warps command, disabled by default
+  # Changes are only applied with server restart
   enable-warps-command: false
