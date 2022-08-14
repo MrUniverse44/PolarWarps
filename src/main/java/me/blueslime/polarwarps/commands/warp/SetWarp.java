@@ -57,23 +57,25 @@ public final class SetWarp implements SlimeCommand {
             if (!plugin.getWarpCommand().getWarps().containsKey(args[0])) {
                 plugin.getWarpCommand().getWarps().put(args[0], player.getLocation());
 
-                plugin.getConfigurationHandler(SlimeFile.WARPS).set(
+                ConfigurationHandler handler = plugin.getConfigurationHandler(SlimeFile.WARPS);
+
+                handler.set(
                         "warps." + args[0] + ".location",
                         LocationSerializer.toString(player.getLocation())
                 );
 
 
-                plugin.getConfigurationHandler(SlimeFile.WARPS).set(
+                handler.set(
                         "warps." + args[0] + ".permission.enabled",
                         false
                 );
 
-                plugin.getConfigurationHandler(SlimeFile.WARPS).set(
+                handler.set(
                         "warps." + args[0] + ".permission.value",
                         "warps." + args[0]
                 );
 
-                plugin.getConfigurationHandler(SlimeFile.WARPS).set(
+                handler.set(
                         "warps." + args[0] + ".permission.value-other",
                         "warps." + args[0]
                 );
@@ -83,16 +85,14 @@ public final class SetWarp implements SlimeCommand {
                 welcomeList.add("&aWelcome to the warp: " + args[0]);
                 welcomeList.add("&eStore.server.net");
 
-                plugin.getConfigurationHandler(SlimeFile.WARPS).set(
+                handler.set(
                         "warps." + args[0] + ".welcome-message",
                         welcomeList
                 );
 
-                //permission.value-other
+                handler.save();
 
-                plugin.getConfigurationHandler(SlimeFile.WARPS).save();
-
-                plugin.getConfigurationHandler(SlimeFile.WARPS).reload();
+                handler.reload();
 
                 sender.sendColoredMessage(
                         messages.getString("messages.set-warp", "&bWarp added!")

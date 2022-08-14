@@ -6,7 +6,7 @@ import dev.mruniverse.slimelib.SlimePlugin;
 import dev.mruniverse.slimelib.SlimePluginInformation;
 import dev.mruniverse.slimelib.commands.SlimeCommands;
 import dev.mruniverse.slimelib.file.configuration.ConfigurationHandler;
-import dev.mruniverse.slimelib.file.input.InputManager;
+import dev.mruniverse.slimelib.file.input.DefaultInputManager;
 import dev.mruniverse.slimelib.loader.BaseSlimeLoader;
 import dev.mruniverse.slimelib.loader.DefaultSlimeLoader;
 import dev.mruniverse.slimelib.logs.SlimeLogger;
@@ -48,7 +48,7 @@ public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
 
         this.loader = new DefaultSlimeLoader<>(
                 this,
-                InputManager.getAutomatically()
+                new DefaultInputManager()
         );
 
         this.loader.setFiles(SlimeFile.class);

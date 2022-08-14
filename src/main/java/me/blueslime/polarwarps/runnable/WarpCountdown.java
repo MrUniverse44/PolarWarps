@@ -75,8 +75,6 @@ public class WarpCountdown extends BukkitRunnable {
                 );
             } else {
 
-                cancel();
-
                 TextComponent component = new TextComponent(
                         color(
                                 messages.getString("messages.sending-cancelled", "&cYou moved! Teleport cancelled")
@@ -88,6 +86,10 @@ public class WarpCountdown extends BukkitRunnable {
                         ChatMessageType.ACTION_BAR,
                         component
                 );
+
+                warp.removeCountdown(player);
+
+                cancel();
             }
         } else {
             player.teleport(

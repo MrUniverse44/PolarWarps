@@ -55,7 +55,7 @@ public enum SlimeFile implements SlimeFiles {
 
     @Override
     public String getResourceFileName(SlimePlatform platform) {
-        return this.resource;
+        return "/" + this.resource;
     }
 
     @Override
