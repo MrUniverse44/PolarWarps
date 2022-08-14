@@ -1,1 +1,3 @@
-# Nothing to change here ;)
+default-welcome-message:
+  - "&aWelcome to this warp"
+  - "&eStore.server.net"

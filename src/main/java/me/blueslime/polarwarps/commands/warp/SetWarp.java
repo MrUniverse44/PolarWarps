@@ -6,7 +6,6 @@ import dev.mruniverse.slimelib.commands.sender.Sender;
 import dev.mruniverse.slimelib.commands.sender.player.SlimePlayer;
 import dev.mruniverse.slimelib.file.configuration.ConfigurationHandler;
 import dev.mruniverse.slimelib.file.configuration.handlers.bukkit.BukkitConfigurationHandler;
-import dev.mruniverse.slimelib.utils.YamlConfiguration;
 import me.blueslime.polarwarps.PolarWarps;
 import me.blueslime.polarwarps.SlimeFile;
 import me.blueslime.polarwarps.utils.LocationSerializer;
@@ -88,10 +87,12 @@ public final class SetWarp implements SlimeCommand {
                         path + "other"
                 );
 
-                List<String> welcomeList = new ArrayList<>();
+                handler.set(
+                        path + "delay",
+                        10
+                );
 
-                welcomeList.add("&aWelcome to the warp: " + args[0]);
-                welcomeList.add("&eStore.server.net");
+                List<String> welcomeList = plugin.getConfigurationHandler(SlimeFile.SETTINGS).getStringList("default-welcome-message");
 
                 handler.set(
                         path + "welcome-message",
