@@ -50,6 +50,12 @@ public final class PluginCommand implements SlimeCommand {
                 sender.sendColoredMessage("&aPlugin has been reloaded!");
             }
         }
+
+        if (args[0].equalsIgnoreCase("list")) {
+            if (sender.isConsoleSender() || sender.hasPermission("polarwarps.list")) {
+                sender.sendColoredMessage(plugin.getWarpCommand().getWarps().keySet().toString());
+            }
+        }
     }
 
 }
