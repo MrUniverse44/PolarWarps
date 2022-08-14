@@ -1,5 +1,6 @@
 package me.blueslime.polarwarps.commands;
 
+import dev.mruniverse.slimelib.commands.command.Command;
 import dev.mruniverse.slimelib.commands.command.SlimeCommand;
 import dev.mruniverse.slimelib.commands.sender.Sender;
 import me.blueslime.polarwarps.PolarWarps;
@@ -7,6 +8,11 @@ import me.blueslime.polarwarps.PolarWarps;
 import java.util.ArrayList;
 import java.util.List;
 
+@Command(
+        description = "Main plugin command",
+        shortDescription = "Plugin Command",
+        usage = "/pw (args)"
+)
 public final class PluginCommand implements SlimeCommand {
 
     private final PolarWarps plugin;
