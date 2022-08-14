@@ -51,6 +51,10 @@ public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
                 InputManager.getAutomatically()
         );
 
+        this.loader.setFiles(SlimeFile.class);
+
+        this.loader.init();
+
         warpCommand = new Warp(this);
 
         getCommands().register(
