@@ -4,6 +4,9 @@ a complete re-work of the EasyWarps by Ez4p1xEL (https://github.com/Ez4p1xEL/Eas
 
 ____
 
+Statics
+<img src="https://bstats.org/signatures/bukkit/PolarWarps.svg">
+
 # Features
 * Welcome Message per warp
 * Editable teleport delay per warp
