@@ -59,25 +59,27 @@ public final class SetWarp implements SlimeCommand {
 
                 ConfigurationHandler handler = plugin.getConfigurationHandler(SlimeFile.WARPS);
 
+                String path = "warps." + args[0] + ".";
+
                 handler.set(
-                        "warps." + args[0] + ".location",
+                        path + "location",
                         LocationSerializer.toString(player.getLocation())
                 );
 
 
                 handler.set(
-                        "warps." + args[0] + ".permission.enabled",
+                        path + "permission.enabled",
                         false
                 );
 
                 handler.set(
-                        "warps." + args[0] + ".permission.value",
+                        path + "permission.value",
                         "warps." + args[0]
                 );
 
                 handler.set(
-                        "warps." + args[0] + ".permission.value-other",
-                        "warps." + args[0]
+                        path + "permission.value-other",
+                        path + "other"
                 );
 
                 List<String> welcomeList = new ArrayList<>();
@@ -86,7 +88,7 @@ public final class SetWarp implements SlimeCommand {
                 welcomeList.add("&eStore.server.net");
 
                 handler.set(
-                        "warps." + args[0] + ".welcome-message",
+                        path + "welcome-message",
                         welcomeList
                 );
 
