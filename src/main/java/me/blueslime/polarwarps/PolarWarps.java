@@ -17,6 +17,7 @@ import me.blueslime.polarwarps.commands.warp.SetWarp;
 import me.blueslime.polarwarps.commands.warp.Warp;
 import me.blueslime.polarwarps.bstats.Metrics;
 
+import me.blueslime.polarwarps.commands.warp.Warps;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
@@ -70,6 +71,12 @@ public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
         getCommands().register(
                 new PluginCommand(this)
         );
+
+        if (getConfigurationHandler(SlimeFile.SETTINGS).getStatus("settings.enable-warps-command", false)) {
+            getCommands().register(
+                    new Warps(this)
+            );
+        }
 
         logs.info("The plugin has been loaded correctly!");
 

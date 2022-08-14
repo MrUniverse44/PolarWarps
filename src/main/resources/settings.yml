@@ -1,3 +1,6 @@
 default-welcome-message:
   - "&aWelcome to this warp"
   - "&eStore.server.net"
+
+settings:
+  enable-warps-command: false
