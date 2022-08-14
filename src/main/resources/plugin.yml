@@ -1,7 +1,7 @@
-name: EasyWarp
-main: p1xel.minecraft.EasyWarp
+name: PolarWarps
+main: me.blueslime.polarwarps.PolarWarps
 api-version: 1.13
-version: 1.0.02
+version: 1.0.0-SNAPSHOT
 commands:
   warp:
     aliases: []
@@ -9,17 +9,17 @@ commands:
     aliases: []
   delwarp:
     aliases: []
-  EasyWarp:
-    aliases: [ew]
+  polarwarps:
+    aliases: [pw]
 
 permissions:
-  easywarp.help:
+  polarwarps.help:
     default: true
-  easywarp.warp:
+  polarwarps.warp:
     default: true
-  easywarp.setwarp:
+  polarwarps.setwarp:
     default: op
-  easywarp.delwarp:
+  polarwarps.delwarp:
     default: op
-  easywarp.reload:
+  polarwarps.reload:
     default: op
