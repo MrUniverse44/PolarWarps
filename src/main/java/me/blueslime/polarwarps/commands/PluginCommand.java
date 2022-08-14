@@ -53,7 +53,8 @@ public final class PluginCommand implements SlimeCommand {
 
         if (args[0].equalsIgnoreCase("list")) {
             if (sender.isConsoleSender() || sender.hasPermission("polarwarps.list")) {
-                sender.sendColoredMessage(plugin.getWarpCommand().getWarps().keySet().toString());
+                sender.sendColoredMessage("&aWarps: (" + plugin.getWarpCommand().getWarps().size() + ")");
+                sender.sendColoredMessage("&b" + plugin.getWarpCommand().getWarps().keySet().toString().replace("[", "").replace("]", ""));
             }
         }
     }
