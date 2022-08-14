@@ -49,7 +49,16 @@ public class LocationSerializer {
     }
 
     public static String toString(Location location) {
-        return location.getWorld() + ", " +
+        if (location.getWorld() == null) {
+            return "World, " +
+                    format.format(location.getX()) + ", " +
+                    format.format(location.getY()) + ", " +
+                    format.format(location.getZ()) + ", " +
+                    location.getYaw() + ", " +
+                    location.getPitch();
+        }
+
+        return location.getWorld().getName() + ", " +
                 format.format(location.getX()) + ", " +
                 format.format(location.getY()) + ", " +
                 format.format(location.getZ()) + ", " +
