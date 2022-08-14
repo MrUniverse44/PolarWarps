@@ -128,6 +128,7 @@ public final class Warp implements SlimeCommand {
 
         sendWarpCountdown(
                 player,
+                warp,
                 settings.getInt(path + "delay", 20),
                 location
         );
@@ -137,7 +138,7 @@ public final class Warp implements SlimeCommand {
         return warps;
     }
 
-    public void sendWarpCountdown(final Player player, final int delay, final Location location) {
+    public void sendWarpCountdown(final Player player, String warp, final int delay, final Location location) {
         if (!counts.containsKey(player.getUniqueId())) {
 
             WarpCountdown countdown = new WarpCountdown(
@@ -145,7 +146,8 @@ public final class Warp implements SlimeCommand {
                     plugin.getConfigurationHandler(SlimeFile.MESSAGES),
                     player,
                     delay,
-                    location
+                    location,
+                    plugin.getConfigurationHandler(SlimeFile.WARPS).getStringList("warps." + warp + ".welcome-message")
             );
 
             counts.put(player.getUniqueId(), countdown.getTaskId());

@@ -11,20 +11,24 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.List;
+
 public class WarpCountdown extends BukkitRunnable {
     private final ConfigurationHandler messages;
+    private final List<String> list;
     private final Location location;
     private final Location last;
     private final Player player;
     private final Warp warp;
     private int delay;
 
-    public WarpCountdown(Warp warp, ConfigurationHandler messages, Player player, int delay, Location location) {
+    public WarpCountdown(Warp warp, ConfigurationHandler messages, Player player, int delay, Location location, List<String> list) {
         this.messages = messages;
         this.location = location;
         this.player   = player;
         this.warp     = warp;
         this.delay    = delay;
+        this.list     = list;
         this.last     = player.getLocation();
         init(warp.getPlugin());
     }
@@ -91,6 +95,26 @@ public class WarpCountdown extends BukkitRunnable {
             );
 
             warp.removeCountdown(player);
+
+            if (!list.contains("<disable>")) {
+                for (String text : list) {
+                    if (!text.contains("<actionbar>")) {
+                        player.sendMessage(
+                                color(text)
+                        );
+                    } else {
+                        TextComponent component = new TextComponent(
+                                color(
+                                        text.replace("<actionbar>", "")
+                                )
+                        );
+                        player.spigot().sendMessage(
+                                ChatMessageType.ACTION_BAR,
+                                component
+                        );
+                    }
+                }
+            }
 
             cancel();
         }
