@@ -5,6 +5,8 @@ version: 1.0.1-SNAPSHOT
 commands:
   warp:
     aliases: []
+  warps:
+    aliases: []
   setwarp:
     aliases: []
   delwarp:

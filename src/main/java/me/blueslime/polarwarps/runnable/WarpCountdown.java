@@ -37,7 +37,7 @@ public class WarpCountdown extends BukkitRunnable {
         runTaskTimer(
                 plugin,
                 0L,
-                delay
+                20L
         );
     }
 

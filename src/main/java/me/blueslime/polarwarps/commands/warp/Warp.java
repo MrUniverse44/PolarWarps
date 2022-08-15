@@ -129,7 +129,7 @@ public final class Warp implements SlimeCommand {
         sendWarpCountdown(
                 player,
                 warp,
-                settings.getInt(path + "delay", 20),
+                settings.getInt(path + "delay", 10),
                 location
         );
     }
