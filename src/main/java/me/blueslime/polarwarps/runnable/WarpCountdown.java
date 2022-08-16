@@ -83,9 +83,9 @@ public class WarpCountdown extends BukkitRunnable {
                     player.sendTitle(
                             "",
                             text,
-                            0,
-                            5,
-                            0
+                            10,
+                            25,
+                            10
                     );
                 }
             } else {
@@ -108,9 +108,9 @@ public class WarpCountdown extends BukkitRunnable {
                     player.sendTitle(
                             "",
                             text,
-                            0,
-                            5,
-                            0
+                            10,
+                            25,
+                            10
                     );
                 }
 
