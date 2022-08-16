@@ -10,7 +10,7 @@
 messages:
   no-warp-permission: "&cYou don't have permissions to travel to this warp."
   player-not-online: "&cThis player is not online!"
-  sending-actionbar: "&aTime Left: &f%left%"
+  sending-message: "&aTime Left: &f%left%"
   sending-cancelled: "&cYou moved! Teleport cancelled"
   del-warp-usage: "&bUsage: &e/delwarp (warp name)&b."
   console-error: "&cThis command is only for players"

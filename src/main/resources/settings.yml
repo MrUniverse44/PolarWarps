@@ -17,3 +17,6 @@ settings:
   # Toggle the /warps command, disabled by default
   # Changes are only applied with server restart
   enable-warps-command: false
+  # If this option is disabled, the message
+  # will be displayed in a SubTitle
+  show-in-action-bar: false

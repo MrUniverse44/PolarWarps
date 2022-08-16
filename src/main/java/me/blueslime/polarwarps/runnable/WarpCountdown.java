@@ -2,6 +2,7 @@ package me.blueslime.polarwarps.runnable;
 
 import dev.mruniverse.slimelib.file.configuration.ConfigurationHandler;
 import me.blueslime.polarwarps.PolarWarps;
+import me.blueslime.polarwarps.SlimeFile;
 import me.blueslime.polarwarps.commands.warp.Warp;
 import me.blueslime.polarwarps.utils.LocationSerializer;
 import net.md_5.bungee.api.ChatColor;
@@ -60,32 +61,58 @@ public class WarpCountdown extends BukkitRunnable {
             String nX = LocationSerializer.toDecimal(player.getLocation().getX());
             String nZ = LocationSerializer.toDecimal(player.getLocation().getZ());
 
+            ConfigurationHandler settings = warp.getPlugin().getConfigurationHandler(SlimeFile.SETTINGS);
+
             if (x.equals(nX) && z.equals(nZ)) {
 
-                TextComponent component = new TextComponent(
-                        color(
-                                messages.getString("messages.sending-actionbar", "&aTime Left: &f%left%")
-                                        .replace("%left%", delay + "")
-                        )
+                String text = color(
+                        messages.getString("messages.sending-message", "&aTime Left: &f%left%")
+                                .replace("%left%", delay + "")
                 );
 
-                player.spigot().sendMessage(
-                        ChatMessageType.ACTION_BAR,
-                        component
+                TextComponent component = new TextComponent(
+                        text
                 );
+
+                if (settings.getStatus("settings.show-in-action-bar")) {
+                    player.spigot().sendMessage(
+                            ChatMessageType.ACTION_BAR,
+                            component
+                    );
+                } else {
+                    player.sendTitle(
+                            "",
+                            text,
+                            0,
+                            5,
+                            0
+                    );
+                }
             } else {
 
-                TextComponent component = new TextComponent(
-                        color(
-                                messages.getString("messages.sending-cancelled", "&cYou moved! Teleport cancelled")
-                                        .replace("%left%", delay + "")
-                        )
+                String text = color(
+                        messages.getString("messages.sending-cancelled", "&cYou moved! Teleport cancelled")
+                                .replace("%left%", delay + "")
                 );
 
-                player.spigot().sendMessage(
-                        ChatMessageType.ACTION_BAR,
-                        component
+                TextComponent component = new TextComponent(
+                        text
                 );
+
+                if (settings.getStatus("settings.show-in-action-bar")) {
+                    player.spigot().sendMessage(
+                            ChatMessageType.ACTION_BAR,
+                            component
+                    );
+                } else {
+                    player.sendTitle(
+                            "",
+                            text,
+                            0,
+                            5,
+                            0
+                    );
+                }
 
                 warp.removeCountdown(player);
 
