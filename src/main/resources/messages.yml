@@ -6,7 +6,7 @@
 #  ┗┛╋╋┗━━━┻━━━┻┛╋┗┻┛┗━┛╋┗┛┗┛┗┛╋┗┻┛┗━┻┛╋╋┗━━━┛
 #
 # Created by JustJustin
-# Version: 1.0.1-SNAPSHOT
+# Version: 1.0.2-SNAPSHOT
 messages:
   no-warp-permission: "&cYou don't have permissions to travel to this warp."
   player-not-online: "&cThis player is not online!"
