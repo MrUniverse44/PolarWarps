@@ -2,6 +2,8 @@ name: PolarWarps
 main: me.blueslime.polarwarps.PolarWarps
 api-version: 1.13
 version: 1.0.1-SNAPSHOT
+softdepend:
+  - PlaceholderAPI
 commands:
   warp:
     aliases: []
@@ -15,13 +17,9 @@ commands:
     aliases: [pw]
 
 permissions:
-  polarwarps.help:
-    default: true
-  polarwarps.warp:
-    default: true
-  polarwarps.setwarp:
+  polarwarps.warp.set:
     default: op
-  polarwarps.delwarp:
+  polarwarps.warp.delete:
     default: op
   polarwarps.reload:
     default: op

@@ -18,6 +18,9 @@ import me.blueslime.polarwarps.commands.warp.Warp;
 import me.blueslime.polarwarps.bstats.Metrics;
 
 import me.blueslime.polarwarps.commands.warp.Warps;
+import me.blueslime.polarwarps.provider.DefaultProvider;
+import me.blueslime.polarwarps.provider.MessageProvider;
+import me.blueslime.polarwarps.provider.PlaceholderProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
@@ -27,6 +30,10 @@ public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
     private SlimePluginInformation information;
 
     private final SlimePlatform platform = SlimePlatform.SPIGOT;
+
+    private MessageProvider provider;
+
+    private boolean useComponents = false;
 
     private Warp warpCommand;
 
@@ -78,6 +85,14 @@ public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
             );
         }
 
+        if (getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            provider = new PlaceholderProvider();
+        } else {
+            provider = new DefaultProvider();
+        }
+
+        useComponents = getConfigurationHandler(SlimeFile.SETTINGS).getStatus("settings.use-components", false);
+
         logs.info("The plugin has been loaded correctly!");
 
         new Metrics(this, 16125);
@@ -94,6 +109,14 @@ public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
 
     public Warp getWarpCommand() {
         return warpCommand;
+    }
+
+    public MessageProvider getMessage() {
+        return provider;
+    }
+
+    public boolean isUsingComponents() {
+        return useComponents;
     }
 
     @Override
@@ -121,5 +144,13 @@ public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
         loader.reload();
 
         warpCommand.reload();
+
+        useComponents = getConfigurationHandler(SlimeFile.SETTINGS).getStatus("settings.use-components", false);
+
+        if (getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            provider = new PlaceholderProvider();
+        } else {
+            provider = new DefaultProvider();
+        }
     }
 }

@@ -1,10 +1,13 @@
 package me.blueslime.polarwarps.runnable;
 
+import dev.mruniverse.slimelib.colors.platforms.bungeecord.BungeeSlimeColor;
 import dev.mruniverse.slimelib.file.configuration.ConfigurationHandler;
 import me.blueslime.polarwarps.PolarWarps;
 import me.blueslime.polarwarps.SlimeFile;
 import me.blueslime.polarwarps.commands.warp.Warp;
+import me.blueslime.polarwarps.provider.MessageProvider;
 import me.blueslime.polarwarps.utils.LocationSerializer;
+import me.blueslime.polarwarps.utils.MessageSender;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -63,56 +66,40 @@ public class WarpCountdown extends BukkitRunnable {
 
             ConfigurationHandler settings = warp.getPlugin().getConfigurationHandler(SlimeFile.SETTINGS);
 
+            String messageType = settings.getString("settings.time-left-type", "ACTION_BAR").toLowerCase();
+
             if (x.equals(nX) && z.equals(nZ)) {
 
-                String text = color(
-                        messages.getString("messages.sending-message", "&aTime Left: &f%left%")
-                                .replace("%left%", delay + "")
-                );
+                String text = messages.getString("messages.sending-message", "&aTime Left: &f%left%")
+                                .replace("%left%", delay + "");
 
-                TextComponent component = new TextComponent(
+                text = warp.getPlugin().getMessage().replace(
+                        player,
                         text
                 );
 
-                if (settings.getStatus("settings.show-in-action-bar")) {
-                    player.spigot().sendMessage(
-                            ChatMessageType.ACTION_BAR,
-                            component
-                    );
-                } else {
-                    player.sendTitle(
-                            "",
-                            text,
-                            10,
-                            25,
-                            10
-                    );
-                }
+                MessageSender.send(
+                        warp.getPlugin().isUsingComponents(),
+                        messageType,
+                        player,
+                        text
+                );
             } else {
 
-                String text = color(
-                        messages.getString("messages.sending-cancelled", "&cYou moved! Teleport cancelled")
-                                .replace("%left%", delay + "")
-                );
+                String text = messages.getString("messages.sending-cancelled", "&cYou moved! Teleport cancelled")
+                                .replace("%left%", delay + "");
 
-                TextComponent component = new TextComponent(
+                text = warp.getPlugin().getMessage().replace(
+                        player,
                         text
                 );
 
-                if (settings.getStatus("settings.show-in-action-bar")) {
-                    player.spigot().sendMessage(
-                            ChatMessageType.ACTION_BAR,
-                            component
-                    );
-                } else {
-                    player.sendTitle(
-                            "",
-                            text,
-                            10,
-                            25,
-                            10
-                    );
-                }
+                MessageSender.send(
+                        warp.getPlugin().isUsingComponents(),
+                        messageType,
+                        player,
+                        text
+                );
 
                 warp.removeCountdown(player);
 
@@ -125,16 +112,40 @@ public class WarpCountdown extends BukkitRunnable {
 
             warp.removeCountdown(player);
 
+            boolean comp = warp.getPlugin().isUsingComponents();
+
+            MessageProvider provider = warp.getPlugin().getMessage();
+
             if (!list.contains("<disable>")) {
                 for (String text : list) {
                     if (!text.contains("<actionbar>")) {
-                        player.sendMessage(
-                                color(text)
-                        );
+                        if (comp) {
+                            player.spigot().sendMessage(
+                                    new BungeeSlimeColor(
+                                            provider.replace(
+                                                    player,
+                                                    text
+                                            ),
+                                            true
+                                    ).build()
+                            );
+                        } else {
+                            player.sendMessage(
+                                    color(
+                                            provider.replace(
+                                                    player,
+                                                    text
+                                            )
+                                    )
+                            );
+                        }
                     } else {
                         TextComponent component = new TextComponent(
                                 color(
-                                        text.replace("<actionbar>", "")
+                                        provider.replace(
+                                                player,
+                                                text.replace("<actionbar>", "")
+                                        )
                                 )
                         );
                         player.spigot().sendMessage(

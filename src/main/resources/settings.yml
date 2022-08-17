@@ -17,6 +17,7 @@ settings:
   # Toggle the /warps command, disabled by default
   # Changes are only applied with server restart
   enable-warps-command: false
-  # If this option is disabled, the message
-  # will be displayed in a SubTitle
-  show-in-action-bar: false
+  # Options: ACTION_BAR (ACTIONBAR, AB, ACTION, 3) TITLE (TT, 2) SUBTITLE (SUB_TITLE, SUB-TITLE, SUB ,1) MESSAGE (TEXT, MSG, 0)
+  time-left-type: ACTION_BAR
+  # Toggle component usage (Only if your server is 1.16+ to allow Gradient and Hex Support)
+  use-components: false
