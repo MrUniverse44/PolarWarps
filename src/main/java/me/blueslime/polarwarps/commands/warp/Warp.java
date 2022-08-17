@@ -109,6 +109,13 @@ public final class Warp implements SlimeCommand {
                 );
                 return;
             }
+        } else {
+            if (!sender.hasPermission(permission)) {
+                sender.sendColoredMessage(
+                        messages.getString("messages.no-warp-permission", "&cYou don't have permissions to travel to this warp.")
+                );
+                return;
+            }
         }
 
         Location location = warps.get(warp);
