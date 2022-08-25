@@ -106,9 +106,17 @@ public class WarpCountdown extends BukkitRunnable {
                 cancel();
             }
         } else {
-            player.teleport(
-                    location
-            );
+            if (location != null && location.getWorld() != null && location.isWorldLoaded()) {
+                try {
+                    player.teleport(
+                            location
+                    );
+                } catch (IllegalArgumentException ignored) {
+                    cancel();
+                }
+            } else {
+                warp.getPlugin().getLogs().info("Can't teleport player to an specified warp on this moment");
+            }
 
             warp.removeCountdown(player);
 
