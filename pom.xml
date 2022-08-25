@@ -6,7 +6,7 @@
 
     <groupId>me.blueslime.polarwarps</groupId>
     <artifactId>PolarWarps</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
 
     <properties>
         <java.version>1.8</java.version>
