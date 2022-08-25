@@ -5,15 +5,11 @@ import dev.mruniverse.slimelib.commands.command.SlimeCommand;
 import dev.mruniverse.slimelib.commands.sender.Sender;
 import dev.mruniverse.slimelib.commands.sender.player.SlimePlayer;
 import dev.mruniverse.slimelib.file.configuration.ConfigurationHandler;
-import dev.mruniverse.slimelib.file.configuration.handlers.bukkit.BukkitConfigurationHandler;
 import me.blueslime.polarwarps.PolarWarps;
 import me.blueslime.polarwarps.SlimeFile;
 import me.blueslime.polarwarps.utils.LocationSerializer;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Command(
@@ -62,8 +58,6 @@ public final class SetWarp implements SlimeCommand {
 
                 ConfigurationHandler handler = plugin.getConfigurationHandler(SlimeFile.WARPS);
 
-                BukkitConfigurationHandler bukkit = (BukkitConfigurationHandler)handler;
-
                 String path = "warps." + args[0] + ".";
 
                 handler.set(
@@ -98,15 +92,6 @@ public final class SetWarp implements SlimeCommand {
                         path + "welcome-message",
                         welcomeList
                 );
-
-                FileConfiguration configuration = bukkit.toSpecifiedConfiguration();
-
-
-                try {
-                    configuration.save(
-                            handler.getFile()
-                    );
-                } catch (IOException ignored) {}
 
                 handler.save();
 
