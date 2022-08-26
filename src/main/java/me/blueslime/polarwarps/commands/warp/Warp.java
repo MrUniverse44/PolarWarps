@@ -42,11 +42,13 @@ public final class Warp implements SlimeCommand {
         warps.clear();
 
         for (String warp : configuration.getContent("warps", false)) {
+            Location location = LocationSerializer.fromString(
+                    configuration.getString("warps." + warp + ".location", "world, 0, 0, 0, 0, 0")
+            );
+
             warps.put(
                     warp,
-                    LocationSerializer.fromString(
-                            configuration.getString("warps." + warp + ".location", "world, 0, 0, 0, 0, 0")
-                    )
+                    location
             );
         }
     }

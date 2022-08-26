@@ -99,6 +99,14 @@ public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
 
         new Metrics(this, 16125);
 
+        getServer().getScheduler().runTaskLater(
+                this,
+                () -> {
+                    getWarpCommand().reload();
+                },
+                20L
+        );
+
     }
 
     public Warp getWarpCommand() {

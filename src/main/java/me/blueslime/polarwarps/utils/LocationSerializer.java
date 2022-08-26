@@ -2,8 +2,10 @@ package me.blueslime.polarwarps.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 
 import java.text.DecimalFormat;
+import java.util.logging.Level;
 
 public class LocationSerializer {
 
@@ -23,26 +25,51 @@ public class LocationSerializer {
         String[] text = location.replace(" ", "").split(",");
 
         if (text.length != 6) {
+            if (text.length == 4) {
+                double x = Double.parseDouble(text[1]);
+                double y = Double.parseDouble(text[2]);
+                double z = Double.parseDouble(text[3]);
+
+                World world = Bukkit.getWorld(text[0]);
+
+                if (world == null) {
+                    Bukkit.getLogger().log(Level.INFO, "The plugin can't get a specified world because was detected as null");
+                }
+                return new Location(
+                        world,
+                        x,
+                        y,
+                        z
+                );
+            }
             return null;
         }
 
         double x = Double.parseDouble(text[1]);
         double y = Double.parseDouble(text[2]);
         double z = Double.parseDouble(text[3]);
+        double yaw = Double.parseDouble(text[4]);
+        double pitch = Double.parseDouble(text[5]);
+
+        World world = Bukkit.getWorld(text[0]);
+
+        if (world == null) {
+            Bukkit.getLogger().log(Level.INFO, "The plugin can't get a specified world because was detected as null");
+        }
 
         Location loc = new Location(
-                Bukkit.getWorld(text[0]),
+                world,
                 x,
                 y,
                 z
         );
 
         loc.setYaw(
-                Float.parseFloat(text[4])
+                (float)yaw
         );
 
         loc.setPitch(
-                Float.parseFloat(text[5])
+                (float)pitch
         );
 
         return loc;
