@@ -129,12 +129,6 @@ public final class Warp implements SlimeCommand {
             return;
         }
 
-        if (counts.containsKey(player.getUniqueId())) {
-            plugin.getServer().getScheduler().cancelTask(
-                    counts.get(player.getUniqueId())
-            );
-        }
-
         sendWarpCountdown(
                 player,
                 warp,
@@ -148,19 +142,22 @@ public final class Warp implements SlimeCommand {
     }
 
     public void sendWarpCountdown(final Player player, String warp, final int delay, final Location location) {
-        if (!counts.containsKey(player.getUniqueId())) {
-
-            WarpCountdown countdown = new WarpCountdown(
-                    this,
-                    plugin.getConfigurationHandler(SlimeFile.MESSAGES),
-                    player,
-                    delay,
-                    location,
-                    plugin.getConfigurationHandler(SlimeFile.WARPS).getStringList("warps." + warp + ".welcome-message")
+        if (counts.containsKey(player.getUniqueId())) {
+            plugin.getServer().getScheduler().cancelTask(
+                    counts.get(player.getUniqueId())
             );
-
-            counts.put(player.getUniqueId(), countdown.getTaskId());
+            counts.remove(player.getUniqueId());
         }
+        WarpCountdown countdown = new WarpCountdown(
+                this,
+                plugin.getConfigurationHandler(SlimeFile.MESSAGES),
+                player,
+                delay,
+                location,
+                plugin.getConfigurationHandler(SlimeFile.WARPS).getStringList("warps." + warp + ".welcome-message")
+        );
+
+        counts.put(player.getUniqueId(), countdown.getTaskId());
     }
 
     @Override
