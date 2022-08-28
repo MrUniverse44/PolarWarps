@@ -2,8 +2,8 @@ package me.blueslime.polarwarps.commands.warp;
 
 import dev.mruniverse.slimelib.commands.command.Command;
 import dev.mruniverse.slimelib.commands.command.SlimeCommand;
-import dev.mruniverse.slimelib.commands.sender.Sender;
 import dev.mruniverse.slimelib.file.configuration.ConfigurationHandler;
+import dev.mruniverse.slimelib.source.SlimeSource;
 import me.blueslime.polarwarps.PolarWarps;
 import me.blueslime.polarwarps.SlimeFile;
 
@@ -26,7 +26,7 @@ public final class DeleteWarp implements SlimeCommand {
     }
 
     @Override
-    public void execute(Sender sender, String commandLabel, String[] args) {
+    public void execute(SlimeSource sender, String commandLabel, String[] args) {
 
         ConfigurationHandler messages = plugin.getConfigurationHandler(SlimeFile.MESSAGES);
 

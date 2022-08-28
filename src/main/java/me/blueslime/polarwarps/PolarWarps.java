@@ -3,8 +3,6 @@ package me.blueslime.polarwarps;
 import dev.mruniverse.slimelib.SlimePlatform;
 import dev.mruniverse.slimelib.SlimePlugin;
 import dev.mruniverse.slimelib.SlimePluginInformation;
-import dev.mruniverse.slimelib.exceptions.SlimeLoaderException;
-import dev.mruniverse.slimelib.file.input.DefaultInputManager;
 import dev.mruniverse.slimelib.loader.BaseSlimeLoader;
 import dev.mruniverse.slimelib.loader.DefaultSlimeLoader;
 import dev.mruniverse.slimelib.logs.SlimeLogger;
@@ -53,8 +51,7 @@ public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
         );
 
         this.loader = new DefaultSlimeLoader<>(
-                this,
-                new DefaultInputManager()
+                this
         );
 
         this.loader.setFiles(SlimeFile.class);
@@ -62,29 +59,24 @@ public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
         this.loader.init();
 
         warpCommand = new Warp(this);
+        getCommands().register(
+                warpCommand
+        );
+        getCommands().register(
+                new SetWarp(this)
+        );
+        getCommands().register(
+                new DeleteWarp(this)
+        );
 
-        try {
-            getCommands().register(
-                    warpCommand
-            );
-            getCommands().register(
-                    new SetWarp(this)
-            );
-            getCommands().register(
-                    new DeleteWarp(this)
-            );
+        getCommands().register(
+                new PluginCommand(this)
+        );
 
+        if (getConfigurationHandler(SlimeFile.SETTINGS).getStatus("settings.enable-warps-command", false)) {
             getCommands().register(
-                    new PluginCommand(this)
+                    new Warps(this)
             );
-
-            if (getConfigurationHandler(SlimeFile.SETTINGS).getStatus("settings.enable-warps-command", false)) {
-                getCommands().register(
-                     new Warps(this)
-                );
-            }
-        } catch (SlimeLoaderException e) {
-            logs.error(e);
         }
 
         if (getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
@@ -101,9 +93,7 @@ public class PolarWarps extends JavaPlugin implements SlimePlugin<JavaPlugin> {
 
         getServer().getScheduler().runTaskLater(
                 this,
-                () -> {
-                    getWarpCommand().reload();
-                },
+                () -> getWarpCommand().reload(),
                 20L
         );
 

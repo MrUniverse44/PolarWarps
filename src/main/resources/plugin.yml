@@ -1,7 +1,8 @@
 name: PolarWarps
 main: me.blueslime.polarwarps.PolarWarps
 api-version: 1.13
-version: 1.0.4-SNAPSHOT
+version: 1.0.5-SNAPSHOT
+website: "https://www.spigotmc.org/resources/104605/"
 softdepend:
   - PlaceholderAPI
 commands:
