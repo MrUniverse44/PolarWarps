@@ -38,8 +38,19 @@ public final class Warps implements SlimeCommand {
         }
 
         if (args.length == 0) {
-            sender.sendColoredMessage("&aWarps: (" + plugin.getWarpCommand().getWarps().size() + ")");
-            sender.sendColoredMessage("&b" + plugin.getWarpCommand().getWarps().keySet().toString().replace("[", "").replace("]", ""));
+
+            sender.sendColoredMessage(
+                    messages.getString(
+                            "messages.warps.title",
+                            "&aWarps&7: &f(&a%size%&f)"
+                    ).replace("%size%", plugin.getWarpCommand().getWarps().size() + "")
+            );
+            sender.sendColoredMessage(
+                    messages.getString("messages.warps.color", "&b") +
+                            plugin.getWarpCommand().getWarps().keySet().toString()
+                                    .replace("[", "")
+                                    .replace("]", "")
+            );
             return;
         }
 

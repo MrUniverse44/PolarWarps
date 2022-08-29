@@ -15,21 +15,29 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import xyz.xenondevs.particle.ParticleEffect;
 
 import java.util.List;
 
 public class WarpCountdown extends BukkitRunnable {
     private final ConfigurationHandler messages;
+    private final ParticleEffect particle;
+    private final boolean hasParticle;
     private final List<String> list;
     private final Location location;
     private final boolean hasSound;
     private final Location last;
     private final Player player;
-    private final Warp warp;
     private final Sound sound;
+    private final Warp warp;
     private int delay;
 
-    public WarpCountdown(Warp warp, ConfigurationHandler messages, Player player, int delay, Location location, List<String> list, boolean hasSound, Sound sound) {
+    public WarpCountdown(
+            Warp warp, ConfigurationHandler messages, Player player, int delay, Location location,
+            List<String> list, boolean hasSound, Sound sound, boolean hasParticle, ParticleEffect particle
+    ) {
+        this.hasParticle = hasParticle;
+        this.particle = particle;
         this.messages = messages;
         this.location = location;
         this.player   = player;
@@ -122,6 +130,18 @@ public class WarpCountdown extends BukkitRunnable {
                                 sound,
                                 1F,
                                 0.5F
+                        );
+                    }
+                    if (hasParticle) {
+                        particle.display(
+                                location,
+                                0.0F,
+                                0.0F,
+                                0.0F,
+                                0.0F,
+                                5,
+                                null,
+                                player
                         );
                     }
                 } catch (IllegalArgumentException ignored) {

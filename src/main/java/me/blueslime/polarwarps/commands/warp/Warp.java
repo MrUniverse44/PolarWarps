@@ -14,6 +14,7 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import me.blueslime.polarwarps.PolarWarps;
+import xyz.xenondevs.particle.ParticleEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -164,6 +165,13 @@ public final class Warp implements SlimeCommand {
                                 "warps." + warp + ".custom-sound.value",
                                 SoundController.getRandomEnumString(Sound.class)
                         )
+                ),
+                warps.getBoolean("warps." + warp + ".custom-particle.enabled", false),
+                verifyParticle(
+                        warps.getString(
+                                "warps." + warp + ".custom-particle.value",
+                                SoundController.getRandomEnumString(ParticleEffect.class)
+                        )
                 )
         );
 
@@ -175,6 +183,14 @@ public final class Warp implements SlimeCommand {
             return Sound.valueOf(sound);
         } catch (IllegalArgumentException ignored) {
             return SoundController.getRandomEnum(Sound.class);
+        }
+    }
+
+    public ParticleEffect verifyParticle(String sound) {
+        try {
+            return ParticleEffect.valueOf(sound);
+        } catch (IllegalArgumentException ignored) {
+            return SoundController.getRandomEnum(ParticleEffect.class);
         }
     }
 

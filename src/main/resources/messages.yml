@@ -6,7 +6,7 @@
 #  ┗┛╋╋┗━━━┻━━━┻┛╋┗┻┛┗━┛╋┗┛┗┛┗┛╋┗┻┛┗━┻┛╋╋┗━━━┛
 #
 # Created by JustJustin
-# Version: 1.0.5-SNAPSHOT
+# Version: 1.0.6-SNAPSHOT
 messages:
   no-warp-permission: "&cYou don't have permissions to travel to this warp."
   player-not-online: "&cThis player is not online!"
@@ -16,4 +16,6 @@ messages:
   console-error: "&cThis command is only for players"
   warp-error: "&cThis warp doesn't exists"
   usage: "&bUsage: &e/warp (warp name)"
-
+  warps:
+    title: "&aWarps&7: &f(&a%size%&f)"
+    color: "&b"

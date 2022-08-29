@@ -11,6 +11,7 @@ import me.blueslime.polarwarps.utils.LocationSerializer;
 import me.blueslime.polarwarps.utils.SoundController;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import xyz.xenondevs.particle.ParticleEffect;
 
 import java.util.List;
 
@@ -93,11 +94,23 @@ public final class SetWarp implements SlimeCommand {
                         false
                 );
 
+                handler.set(
+                        path + "custom-particle.enabled",
+                        false
+                );
+
+                ParticleEffect particle = SoundController.getRandomEnum(ParticleEffect.class);
+
                 Sound sound = SoundController.getRandomEnum(Sound.class);
 
                 handler.set(
                         path + "custom-sound.value",
                         sound.toString().toUpperCase()
+                );
+
+                handler.set(
+                        path + "custom-particle.value",
+                        particle.toString().toUpperCase()
                 );
 
                 List<String> welcomeList = plugin.getConfigurationHandler(SlimeFile.SETTINGS).getStringList("default-welcome-message");
