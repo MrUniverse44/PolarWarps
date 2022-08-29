@@ -8,6 +8,8 @@ import dev.mruniverse.slimelib.source.player.SlimePlayer;
 import me.blueslime.polarwarps.PolarWarps;
 import me.blueslime.polarwarps.SlimeFile;
 import me.blueslime.polarwarps.utils.LocationSerializer;
+import me.blueslime.polarwarps.utils.SoundController;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -84,6 +86,18 @@ public final class SetWarp implements SlimeCommand {
                 handler.set(
                         path + "delay",
                         10
+                );
+
+                handler.set(
+                        path + "custom-sound.enabled",
+                        false
+                );
+
+                Sound sound = SoundController.getRandomEnum(Sound.class);
+
+                handler.set(
+                        path + "custom-sound.value",
+                        sound.toString().toUpperCase()
                 );
 
                 List<String> welcomeList = plugin.getConfigurationHandler(SlimeFile.SETTINGS).getStringList("default-welcome-message");

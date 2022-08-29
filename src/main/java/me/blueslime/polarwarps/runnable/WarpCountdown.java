@@ -12,6 +12,7 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -21,12 +22,14 @@ public class WarpCountdown extends BukkitRunnable {
     private final ConfigurationHandler messages;
     private final List<String> list;
     private final Location location;
+    private final boolean hasSound;
     private final Location last;
     private final Player player;
     private final Warp warp;
+    private final Sound sound;
     private int delay;
 
-    public WarpCountdown(Warp warp, ConfigurationHandler messages, Player player, int delay, Location location, List<String> list) {
+    public WarpCountdown(Warp warp, ConfigurationHandler messages, Player player, int delay, Location location, List<String> list, boolean hasSound, Sound sound) {
         this.messages = messages;
         this.location = location;
         this.player   = player;
@@ -34,6 +37,8 @@ public class WarpCountdown extends BukkitRunnable {
         this.delay    = delay;
         this.list     = list;
         this.last     = player.getLocation();
+        this.sound    = sound;
+        this.hasSound = hasSound;
         init(warp.getPlugin());
     }
 
@@ -111,7 +116,16 @@ public class WarpCountdown extends BukkitRunnable {
                     player.teleport(
                             location
                     );
+                    if (hasSound) {
+                        player.playSound(
+                                player,
+                                sound,
+                                1F,
+                                0.5F
+                        );
+                    }
                 } catch (IllegalArgumentException ignored) {
+                    warp.removeCountdown(player);
                     cancel();
                 }
             } else {

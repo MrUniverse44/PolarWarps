@@ -8,8 +8,10 @@ import dev.mruniverse.slimelib.source.player.SlimePlayer;
 import me.blueslime.polarwarps.SlimeFile;
 import me.blueslime.polarwarps.runnable.WarpCountdown;
 import me.blueslime.polarwarps.utils.LocationSerializer;
+import me.blueslime.polarwarps.utils.SoundController;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import me.blueslime.polarwarps.PolarWarps;
 
@@ -148,16 +150,32 @@ public final class Warp implements SlimeCommand {
             );
             counts.remove(player.getUniqueId());
         }
+        ConfigurationHandler warps = plugin.getConfigurationHandler(SlimeFile.WARPS);
         WarpCountdown countdown = new WarpCountdown(
                 this,
                 plugin.getConfigurationHandler(SlimeFile.MESSAGES),
                 player,
                 delay,
                 location,
-                plugin.getConfigurationHandler(SlimeFile.WARPS).getStringList("warps." + warp + ".welcome-message")
+                warps.getStringList("warps." + warp + ".welcome-message"),
+                warps.getBoolean("warps." + warp + ".custom-sound.enabled", false),
+                verifySound(
+                        warps.getString(
+                                "warps." + warp + ".custom-sound.value",
+                                SoundController.getRandomEnumString(Sound.class)
+                        )
+                )
         );
 
         counts.put(player.getUniqueId(), countdown.getTaskId());
+    }
+
+    public Sound verifySound(String sound) {
+        try {
+            return Sound.valueOf(sound);
+        } catch (IllegalArgumentException ignored) {
+            return SoundController.getRandomEnum(Sound.class);
+        }
     }
 
     @Override
