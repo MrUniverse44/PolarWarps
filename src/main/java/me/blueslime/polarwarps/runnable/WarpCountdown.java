@@ -139,7 +139,21 @@ public class WarpCountdown extends BukkitRunnable {
                                 0.0F,
                                 0.0F,
                                 0.0F,
-                                5,
+                                15,
+                                null,
+                                player
+                        );
+                        Location second = location.clone();
+                        second.setY(
+                                location.getY() + 1
+                        );
+                        particle.display(
+                                second,
+                                0.0F,
+                                0.0F,
+                                0.0F,
+                                0.0F,
+                                15,
                                 null,
                                 player
                         );
